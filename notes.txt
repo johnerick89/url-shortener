@@ -1,0 +1,6 @@
+Url Shortener notes
+The solution has been implemented in a micro-service architecture basis
+Backend: Django + sqlite3 database
+Front-end: React 
+
+Instructions on how to run the application are in the README file.
