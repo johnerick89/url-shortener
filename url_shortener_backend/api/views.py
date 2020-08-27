@@ -4,7 +4,7 @@ from rest_framework.parsers import JSONParser
 from django.shortcuts import redirect
 from api.models import Url
 from api.serializers import UrlSerializer
-
+from django.urls import resolve, reverse
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -19,6 +19,8 @@ class UrlList(APIView):
     def get(self, request, format=None):
         urls = Url.objects.all()
         serializer = UrlSerializer(urls, many=True)
+        path = resolve('/urls/')
+        print(path)
         return JsonResponse(serializer.data, safe=False)
 
     def post(self, request, format=None):

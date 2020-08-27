@@ -62,3 +62,13 @@ $ python3 manage.py runserver
 
 For python deployment your app should now be running on [127.0.0.1:8000](http://127.0.0.1:8000/) or 
 [localhost:8000](localhost:8000/) 
+```
+
+Alternatively, one can execute commands from the make file or run the run.sh script
+
+```sh
+# Setup & Run app
+./run.sh
+
+# Run tests
+./test.sh  
