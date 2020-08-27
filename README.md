@@ -5,8 +5,8 @@ Getting Started
 From the url_shorter_backend, run commands detailed in the README therein. 
 From the url_shorter_frontend, run npm install, then run npm start to open up in browser.
 
-Built With
-Django
-Django Rest Framework
-React.js
-sqlite3
+Built With: <br>
+Django<br>
+Django Rest Framework<br>
+React.js<br>
+sqlite3<br>
