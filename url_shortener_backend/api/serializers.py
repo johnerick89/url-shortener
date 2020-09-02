@@ -1,11 +1,12 @@
 from rest_framework import serializers
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
 from api.models import Url
 from django.http import Http404
 from pprint import pprint
 import json
 from decimal import Decimal
 import decimal
-import short_url
 import socket
 
 
@@ -19,6 +20,21 @@ class UrlSerializer(serializers.HyperlinkedModelSerializer):
         model = Url
         fields = (
             'original', 'tiny', 'id', 'clicks')
+
+    def _is_valid_url(self, original):
+        val = URLValidator()
+        try:
+            val(original)
+        except ValidationError as e:
+            raise serializers.ValidationError({original: "Enter a valid URL in the original url field"})
+
+    def validate(self, data):
+        original = data['original']
+        if original is None:
+            raise serializers.ValidationError({original: "This field should not be left empty."})
+        else:
+            self._is_valid_url(original)
+        return data
 
     def create(self, validated_data):
         """

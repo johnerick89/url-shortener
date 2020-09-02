@@ -2,7 +2,7 @@ import React from "react";
 import UrlItem from "../components/UrlItem";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { List, Divider, Card } from "@material-ui/core";
+import { List, Divider, Card ,Typography} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,7 +35,9 @@ function UrlsListContainer(props) {
     <Card
       style={{ width: "800px", minWidth: "800px", marginBottom: "20px" }}
       variant="outlined"
-    >
+    ><Typography variant="h5" component="h2">
+    All Shortened URLs
+  </Typography>
       <List className={classes.root}>{renderUrls()}</List>
     </Card>
   );

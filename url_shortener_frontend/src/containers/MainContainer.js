@@ -1,10 +1,12 @@
 import React from "react";
 import CreateUrl from "../components/CreateUrl";
 import UrlsListContainer from "./UrlsListContainer";
+import validator from 'validator';
 
 export default class MainContainer extends React.Component {
   state = {
     urls: [],
+    newUrl: ""
   };
 
   componentDidMount() {
@@ -18,6 +20,8 @@ export default class MainContainer extends React.Component {
   }
 
   createNewUrl = (input) => {
+    console.log(input)
+    if (validator.isURL(input)){
     fetch("http://localhost:8000/api/urls/", {
       method: "POST",
       headers: {
@@ -32,8 +36,10 @@ export default class MainContainer extends React.Component {
       .then((newUrl) => {
         this.setState({
           urls: [...this.state.urls, newUrl],
+          newUrl : newUrl
         });
       });
+    };
   };
 
 
@@ -48,7 +54,7 @@ export default class MainContainer extends React.Component {
           flexDirection: "column",
         }}
       >
-        <CreateUrl createNewUrl={this.createNewUrl} />
+        <CreateUrl createNewUrl={this.createNewUrl} newUrl ={this.state.newUrl}/>
         <UrlsListContainer
           urls={this.state.urls}
         />
